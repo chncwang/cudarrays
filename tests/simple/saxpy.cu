@@ -32,10 +32,12 @@
 
 #include <cudarrays/types.hpp>
 #include <cudarrays/launch.hpp>
+#include <array>
 
 #include "saxpy_kernel.cuh"
 
 using namespace cudarrays;
+using namespace std;
 
 unsigned INPUTSET = 0;
 bool TEST = true;
@@ -112,39 +114,44 @@ launch_test_saxpy(compute_conf<1> gpus, mapping1D infoB,
     return true;
 }
 
-int main()
-{
-    bool ok = false;
-
-    ok = launch_test_saxpy<replicate::x>({ compute::x, 1 },
-                                         {{0}}, {{0}});
-    printf("DISTRIBUTED_REPLICATED 1: %d\n", ok);
-    ok = launch_test_saxpy<replicate::x>({compute::x, 2},
-                                         {{0}}, {{0}});
-    printf("DISTRIBUTED_REPLICATED 2: %d\n", ok);
-    ok = launch_test_saxpy<replicate::x>({compute::x, 4},
-                                         {{0}}, {{0}});
-    printf("DISTRIBUTED_REPLICATED 4: %d\n", ok);
-    ok = launch_test_saxpy<vm::x>({ compute::x, 1 },
-                                     {{0}}, {{0}});
-    printf("DISTRIBUTED_VM 1: %d\n", ok);
-    ok = launch_test_saxpy<vm::x>({compute::x, 2},
-                                     {{0}}, {{0}});
-    printf("DISTRIBUTED_VM 2: %d\n", ok);
-    ok = launch_test_saxpy<vm::x>({compute::x, 4},
-                                     {{0}}, {{0}});
-    printf("DISTRIBUTED_VM 4: %d\n", ok);
-    ok = launch_test_saxpy<reshape::x>({compute::x, 1},
-                                          {{0}}, {{0}});
-    printf("RESHAPE_BLOCK   1: %d\n", ok);
-    ok = launch_test_saxpy<reshape::x>({compute::x, 2},
-                                          {{0}}, {{0}});
-    printf("RESHAPE_BLOCK_X 2: %d\n", ok);
-    ok = launch_test_saxpy<reshape::x>({compute::x, 4},
-                                          {{0}}, {{0}});
-    printf("RESHAPE_BLOCK_X 4: %d\n", ok);
-
-    return 0;
-}
+//int main()
+//{
+//    bool ok = false;
+//
+//    ok = launch_test_saxpy<replicate::x>({ compute::x, 1 },
+//                                         {{0}}, {{0}});
+//    printf("DISTRIBUTED_REPLICATED 1: %d\n", ok);
+//    ok = launch_test_saxpy<replicate::x>({compute::x, 2},
+//                                         {{0}}, {{0}});
+//    printf("DISTRIBUTED_REPLICATED 2: %d\n", ok);
+//    ok = launch_test_saxpy<replicate::x>({compute::x, 4},
+//                                         {{0}}, {{0}});
+//    printf("DISTRIBUTED_REPLICATED 4: %d\n", ok);
+//    ok = launch_test_saxpy<vm::x>({ compute::x, 1 },
+//                                     {{0}}, {{0}});
+//    printf("DISTRIBUTED_VM 1: %d\n", ok);
+//    ok = launch_test_saxpy<vm::x>({compute::x, 2},
+//                                     {{0}}, {{0}});
+//    printf("DISTRIBUTED_VM 2: %d\n", ok);
+//    ok = launch_test_saxpy<vm::x>({compute::x, 4},
+//                                     {{0}}, {{0}});
+//    printf("DISTRIBUTED_VM 4: %d\n", ok);
+//    ok = launch_test_saxpy<reshape::x>({compute::x, 1},
+//                                          {{0}}, {{0}});
+//    printf("RESHAPE_BLOCK   1: %d\n", ok);
+//    ok = launch_test_saxpy<reshape::x>({compute::x, 2},
+//                                          {{0}}, {{0}});
+//    printf("RESHAPE_BLOCK_X 2: %d\n", ok);
+//    ok = launch_test_saxpy<reshape::x>({compute::x, 4},
+//                                          {{0}}, {{0}});
+//    printf("RESHAPE_BLOCK_X 4: %d\n", ok);
+//
+//    return 0;
+//}
 
 /* vim:set backspace=2 tabstop=4 shiftwidth=4 textwidth=120 foldmethod=marker expandtab: */
+
+int main() {
+    std::vector<int> dims = {50, 100, 200, 500, 1000, 2000, 5000, 10000};
+    return 0;
+}

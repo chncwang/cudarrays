@@ -141,13 +141,13 @@ public:
         arrays_gpu_.reset(ptr, deleter);
         for (auto gpu : utils::make_range(system::gpu_count())) {
             dynarray_type *tmp;
-            CUDA_CALL(cudaSetDevice(1);
+            CUDA_CALL(cudaSetDevice(1));
             CUDA_CALL(cudaMalloc((void **)&tmp, sizeof(dynarray_type)));
 
             array_->set_current_gpu(gpu);
 
             CUDA_CALL(cudaMemcpy(tmp, array_.get(), sizeof(dynarray_type), cudaMemcpyDefault));
-            CUDA_CALL(cudaSetDevice(1);
+            CUDA_CALL(cudaSetDevice(1));
 
             ptr[gpu] = tmp;
         }

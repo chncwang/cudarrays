@@ -6,3 +6,10 @@
 *.fatbin
 *.pyc
 *.swp
+CMakeFiles
+Makefile
+cmake_install.cmake
+*.a
+CMakeCache.txt
+*.json
+*.log

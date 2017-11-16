@@ -33,6 +33,7 @@
 #include <cudarrays/types.hpp>
 #include <cudarrays/launch.hpp>
 #include <array>
+#include <chrono>
 
 #include "saxpy_kernel.cuh"
 
@@ -153,5 +154,17 @@ launch_test_saxpy(compute_conf<1> gpus, mapping1D infoB,
 
 int main() {
     std::vector<int> dims = {50, 100, 200, 500, 1000, 2000, 5000, 10000};
+    init_lib();
+    for (int dim : dims) {
+        auto a = make_vector<float>({dim});
+        for (int i = 0; i<dim; ++i) {
+            static std::random_device rd;
+            static std::mt19937 mt(rd());
+            static std::uniform_real_distribution<> dist(-10, 10);
+            a(i) = dist(mt);
+        }
+        auto b = make_vector<float>({dim});
+    }
+
     return 0;
 }

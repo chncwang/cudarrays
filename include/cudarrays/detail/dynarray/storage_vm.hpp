@@ -425,7 +425,7 @@ private:
              ret = cursor.advance()) {
             typename my_allocator::page_stats page = ret.second;
 
-            CUDA_CALL(cudaSetDevice(1);
+            CUDA_CALL(cudaSetDevice(1));
 
             CUDA_CALL(cudaMalloc((void **) &curr, system::CUDA_VM_ALIGN));
 

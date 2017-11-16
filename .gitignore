@@ -6,3 +6,12 @@
 *.fatbin
 *.pyc
 *.swp
+CMakeCache.txt
+CMakeFiles
+cmake_install.cmake
+*.json
+*.log
+Makefile
+*.a
+*.fatbin.c
+*.reg.c

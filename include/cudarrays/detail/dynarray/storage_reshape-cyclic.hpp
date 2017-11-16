@@ -80,7 +80,7 @@ class dynarray_storage<detail::storage_tag::RESHAPE_CYCLIC, StorageTraits> :
 
                     unsigned gpu = idx;
                     // Set the device where data is allocated
-                    CUDA_CALL(cudaSetDevice(gpu));
+                    CUDA_CALL(cudaSetDevice(1);
                     // Perform memory allocation
                     value_type *tmp;
                     CUDA_CALL(cudaMalloc((void **) &tmp, hostInfo_->elemsLocal * sizeof(value_type)));

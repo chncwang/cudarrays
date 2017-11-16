@@ -59,7 +59,7 @@ private:
     {
         DEBUG("ALLOC begin");
         for (unsigned gpu : gpus) {
-            CUDA_CALL(cudaSetDevice(gpu));
+            CUDA_CALL(cudaSetDevice(1);
             CUDA_CALL(cudaMalloc((void **) &hostInfo_->allocsDev[gpu], elems * sizeof(value_type)));
 
             DEBUG("ALLOC in GPU %u : %p", gpu, hostInfo_->allocsDev[gpu]);
@@ -269,7 +269,7 @@ public:
         static std::vector<cudaStream_t> streams;
         if (streams.size() == 0) {
             for (unsigned gpu : utils::make_range(system::gpu_count())) {
-                CUDA_CALL(cudaSetDevice(gpu));
+                CUDA_CALL(cudaSetDevice(1);
                 cudaStream_t stream;
                 CUDA_CALL(cudaStreamCreate(&stream));
                 streams.push_back(stream);

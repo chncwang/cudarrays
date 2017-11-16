@@ -45,7 +45,7 @@ void init()
         GPUS = devices;
 
     for (int d1 = 0; d1 < devices; ++d1) {
-        err = cudaSetDevice(d1);
+        err = cudaSetDevice(1);
         ASSERT(err == cudaSuccess);
         unsigned peers = 1;
         for (int d2 = 0; d2 < devices; ++d2) {
@@ -63,7 +63,7 @@ void init()
             }
         }
 #if CUDARRAYS_DEBUG_CUDA == 1
-        err = cudaSetDevice(d1);
+        err = cudaSetDevice(1);
         ASSERT(err == cudaSuccess);
         size_t value;
         err = cudaDeviceGetLimit(&value, cudaLimitStackSize);
@@ -77,7 +77,7 @@ void init()
     }
 
     for (unsigned i = 0; i < GPUS; ++i) {
-        err = cudaSetDevice(i);
+        err = cudaSetDevice(1);
         ASSERT(err == cudaSuccess);
 
         // Preallocate streams for kernel execution

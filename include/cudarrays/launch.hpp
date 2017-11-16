@@ -275,7 +275,7 @@ static void init_streams(unsigned gpus)
             cudaEvent_t begin, end;
             cudaError_t err;
 
-            err = cudaSetDevice(i);
+            err = cudaSetDevice(1);
             ASSERT(err == cudaSuccess);
 
             err = cudaEventCreate(&begin);
@@ -435,7 +435,7 @@ protected:
         activeGPUs_.clear();
 
         for (unsigned i : utils::make_range(gpus_)) {
-            cudaError_t err = cudaSetDevice(i);
+            cudaError_t err = cudaSetDevice(1);
             ASSERT(err == cudaSuccess);
             err = cudaDeviceSynchronize();
             ASSERT(err == cudaSuccess);
@@ -470,7 +470,7 @@ protected:
                     }
 
                     if (local.z > 0 && local.y > 0 && local.x > 0) {
-                        cudaError_t err = cudaSetDevice(gpu);
+                        cudaError_t err = cudaSetDevice(1);
                         ASSERT(err == cudaSuccess);
 
                         DEBUG("gpu %zd: %zd %zd %zd", gpu, i, j, k);
@@ -521,7 +521,7 @@ protected:
                     }
 
                     if (local.z > 0 && local.y > 0 && local.x > 0) {
-                        cudaError_t err = cudaSetDevice(gpu);
+                        cudaError_t err = cudaSetDevice(1);
                         ASSERT(err == cudaSuccess);
                         DEBUG("gpu %zd: %zd %zd %zd", gpu, i, j, k);
                         DEBUG("grid: %zd %zd %zd", local.z, local.y, local.x);
